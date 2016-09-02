@@ -33,22 +33,6 @@ static NSInteger count = 0;
 
     sourceImage = [UIImage imageWithData: [NSData dataWithContentsOfURL: imageURL]];
 
-    PHFetchResult *savedAssets = [PHAsset fetchAssetsWithLocalIdentifiers:@[fileName] options:nil];
-    [savedAssets enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {
-        //this gets called for every asset from its localIdentifier you saved
-
-        [[PHImageManager defaultManager]
-         requestImageDataForAsset:asset
-         options:imageRequestOptions
-         resultHandler:^(NSData *imageData, NSString *dataUTI,
-                         UIImageOrientation orientation,
-                         NSDictionary *info)
-         {
-             sourceImage  = [UIImage imageWithData:imageData];
-         }];
-
-    }];
-
     NSLog(@"image resizer:%@",  (sourceImage  ? @"image exsist" : @"null" ));
 
     UIImage *tempImage = nil;
